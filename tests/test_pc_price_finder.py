@@ -281,6 +281,58 @@ def test_cli_integrated_search_for_rtx5090_and_ryzen_9950x3d(tmp_path):
     assert all("9950X3D2" not in offer["title"] for offer in ryzen_payload["offers"])
 
 
+def test_portable_launcher_integrated_search(tmp_path):
+    launcher = Path(__file__).resolve().parents[1] / "run.py"
+    server = _start_mock_store_server()
+    base_url = f"http://127.0.0.1:{server.server_port}"
+    config_path = tmp_path / "stores.json"
+    config_path.write_text(
+        json.dumps(
+            {
+                "stores": [
+                    {
+                        "name": "Loja Integrada Mock",
+                        "enabled": True,
+                        "base_url": base_url,
+                        "search_url": f"{base_url}/busca/{{query_slug}}",
+                        "allowed_hosts": ["127.0.0.1"],
+                        "product_url_patterns": ["/produto/\\d+/"],
+                        "link_selectors": ["a[href*='/produto/']"],
+                        "wait_ms": 0,
+                        "max_candidates": 5,
+                    }
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    try:
+        completed = subprocess.run(
+            [
+                sys.executable,
+                str(launcher),
+                "Ryzen 9 9950X3D",
+                "--json",
+                "--config",
+                str(config_path),
+                "--max-results",
+                "5",
+            ],
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=60,
+        )
+    finally:
+        server.shutdown()
+        server.server_close()
+
+    payload = json.loads(completed.stdout)
+    assert payload["best_offer"]["price"] == "4269.99"
+    assert "9950X3D" in payload["best_offer"]["title"]
+
+
 def _run_cli_search(script: Path, config_path: Path, query: str) -> dict:
     completed = subprocess.run(
         [

@@ -19,11 +19,16 @@ KaBuM, Pichau, TerabyteShop, Amazon Brasil, Mercado Livre, Magazine Luiza e WAZ.
 ### Local
 
 ```bash
-python -m pip install -r requirements.txt
-python -m playwright install chromium
+python install.py
 ```
 
-No Windows, você também pode usar:
+Se o sistema expuser apenas `python3`:
+
+```bash
+python3 install.py
+```
+
+No Windows, você também pode usar PowerShell:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\install.ps1
@@ -43,10 +48,16 @@ O instalador copia a skill para `~/.agents/skills/comparador-precos-pc-br`, ou p
 Executar diretamente:
 
 ```bash
-python scripts/pc_price_finder.py "Ryzen 9 9950X3D" --json
+python run.py "Ryzen 9 9950X3D" --json
 ```
 
-No Windows:
+Se o sistema expuser apenas `python3`:
+
+```bash
+python3 run.py "Ryzen 9 9950X3D" --json
+```
+
+No Windows, PowerShell continua disponível como alternativa:
 
 ```powershell
 .\run.ps1 "Ryzen 9 9950X3D" -Json
@@ -55,13 +66,13 @@ No Windows:
 Selecionar lojas:
 
 ```bash
-python scripts/pc_price_finder.py "RTX 5070 Ti 16GB" --stores "KaBuM,Pichau" --json
+python run.py "RTX 5070 Ti 16GB" --stores "KaBuM,Pichau" --json
 ```
 
 Salvar saída para monitoramento recorrente:
 
 ```bash
-python scripts/pc_price_finder.py "Samsung 990 Pro 2TB" --json --output output/990-pro-2tb.json
+python run.py "Samsung 990 Pro 2TB" --json --output output/990-pro-2tb.json
 ```
 
 ## Exemplo de saída
@@ -106,7 +117,9 @@ Estrutura recomendada para publicar em marketplaces como skills.sh e Skills Mark
 ├── catalog.json
 ├── package.json
 ├── agents/openai.yaml
+├── install.py
 ├── install.ps1
+├── run.py
 ├── run.ps1
 ├── requirements.txt
 ├── scripts/

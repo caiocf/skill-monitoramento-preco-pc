@@ -10,33 +10,71 @@ Use esta skill para pesquisar uma peça de PC em lojas brasileiras, comparar ofe
 ## Fluxo obrigatório
 
 1. Preserve o modelo informado pelo usuário, incluindo sufixos, capacidade, geração e revisão. Exemplos: `9950X3D`, `RTX 5070 Ti 16GB`, `990 Pro 2TB`.
-2. Localize esta skill pelo caminho do arquivo `SKILL.md` carregado pelo agente.
-3. Execute `scripts/pc_price_finder.py` com saída JSON.
+2. Resolva o diretório executável da skill antes de montar o comando. Não assuma que o `SKILL.md` carregado tem a pasta `scripts/` ao lado dele.
+3. Execute `run.py` com saída JSON. Use `run.ps1` apenas como conveniência no Windows.
 4. Analise `best_offer`, `offers` e `stores`.
 5. Mostre o menor preço primeiro, usando `best_offer.url` ou `best_offer_url`.
 6. Mostre as demais ofertas válidas em ordem crescente de preço.
 7. Avise que o frete não está incluído e que marketplaces podem variar por vendedor, CEP, login, cupom e forma de pagamento.
 8. Informe lojas com `status=error`, sem inventar resultados para elas.
 
+## Localização rápida do diretório executável
+
+Use o primeiro diretório que existir e contiver `scripts/pc_price_finder.py`:
+
+1. O diretório informado pelo usuário na conversa.
+2. O diretório atual do workspace, se contiver `scripts/pc_price_finder.py`.
+3. O diretório onde o `SKILL.md` carregado está, se contiver `scripts/pc_price_finder.py`.
+4. Um checkout local conhecido informado pelo usuário, quando existir.
+
+Se o `SKILL.md` carregado estiver em uma pasta de skills instalada mas essa pasta não tiver `scripts/`, use o checkout local informado pelo usuário ou o workspace atual. Não tente executar `scripts/pc_price_finder.py` a partir de uma cópia incompleta da skill.
+
 ## Comando
 
-No Windows:
+Use comandos do sistema operacional atual. PowerShell é alternativa de Windows; em macOS e Linux use `bash`, `zsh` ou a shell disponível.
+
+Comando padrão multiplataforma:
+
+```bash
+python run.py "<COMPONENTE>" --json
+```
+
+Se o sistema expuser apenas `python3`:
+
+```bash
+python3 run.py "<COMPONENTE>" --json
+```
+
+No Windows, `run.ps1` continua disponível como conveniência:
 
 ```powershell
-py "<DIRETORIO_DA_SKILL>\scripts\pc_price_finder.py" "<COMPONENTE>" --json
+.\run.ps1 "<COMPONENTE>" -Json
 ```
 
-No Linux ou macOS:
+`run.py` detecta a `.venv` local quando ela existir e repassa os argumentos para `scripts/pc_price_finder.py`.
 
-```bash
-python3 "<DIRETORIO_DA_SKILL>/scripts/pc_price_finder.py" "<COMPONENTE>" --json
+Se for executar diretamente no Windows, prefira a `.venv` local quando existir:
+
+```powershell
+& "<DIRETORIO_DA_SKILL>\.venv\Scripts\python.exe" "<DIRETORIO_DA_SKILL>\scripts\pc_price_finder.py" "<COMPONENTE>" --json
 ```
 
-Com pyenv:
+Se for executar diretamente no macOS ou Linux, prefira a `.venv` local quando existir:
 
 ```bash
-pyenv local 3.11.9
-python "<DIRETORIO_DA_SKILL>/scripts/pc_price_finder.py" "<COMPONENTE>" --json
+"<DIRETORIO_DA_SKILL>/.venv/bin/python" "<DIRETORIO_DA_SKILL>/scripts/pc_price_finder.py" "<COMPONENTE>" --json
+```
+
+Fallback direto quando não houver `.venv`:
+
+```bash
+python scripts/pc_price_finder.py "<COMPONENTE>" --json
+```
+
+Ou:
+
+```bash
+python3 scripts/pc_price_finder.py "<COMPONENTE>" --json
 ```
 
 Passe os argumentos como lista quando usar uma API de subprocesso. Não concatene entrada do usuário em uma string de shell.
@@ -101,7 +139,19 @@ Esta skill faz uma cotação pontual. Para monitorar histórico ou alertas, exec
 
 ## Dependências
 
-Se o Playwright não estiver instalado, use o instalador incluído:
+Se o Playwright não estiver instalado, use o instalador multiplataforma:
+
+```bash
+python install.py
+```
+
+Se o sistema expuser apenas `python3`:
+
+```bash
+python3 install.py
+```
+
+No Windows, também é possível usar o instalador PowerShell:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File "<DIRETORIO_DA_SKILL>\install.ps1"
