@@ -1,0 +1,139 @@
+{
+  "stores": [
+    {
+      "name": "KaBuM",
+      "enabled": true,
+      "base_url": "https://www.kabum.com.br",
+      "search_url": "https://www.kabum.com.br/busca/{query_slug}",
+      "allowed_hosts": [
+        "kabum.com.br",
+        "www.kabum.com.br"
+      ],
+      "product_url_patterns": [
+        "/produto/\\d+/"
+      ],
+      "link_selectors": [
+        "a[href*='/produto/']"
+      ],
+      "wait_ms": 2500,
+      "max_candidates": 4
+    },
+    {
+      "name": "Pichau",
+      "enabled": true,
+      "base_url": "https://www.pichau.com.br",
+      "search_url": "https://www.pichau.com.br/search?q={query}",
+      "allowed_hosts": [
+        "pichau.com.br",
+        "www.pichau.com.br"
+      ],
+      "product_url_patterns": [
+        "^/(?!search(?:/|$)|hardware(?:/|$)|marca(?:/|$)|fabricante(?:/|$)|categoria(?:/|$))[^?#]+-[^?#]+$"
+      ],
+      "link_selectors": [
+        "main a[href]",
+        "a[href]"
+      ],
+      "wait_ms": 3000,
+      "max_candidates": 4
+    },
+    {
+      "name": "TerabyteShop",
+      "enabled": true,
+      "base_url": "https://www.terabyteshop.com.br",
+      "search_url": "https://www.terabyteshop.com.br/busca?str={query}",
+      "allowed_hosts": [
+        "terabyteshop.com.br",
+        "www.terabyteshop.com.br"
+      ],
+      "product_url_patterns": [
+        "/produto/\\d+/"
+      ],
+      "link_selectors": [
+        "a[href*='/produto/']"
+      ],
+      "wait_ms": 3000,
+      "max_candidates": 4
+    },
+    {
+      "name": "Amazon Brasil",
+      "enabled": true,
+      "base_url": "https://www.amazon.com.br",
+      "search_url": "https://www.amazon.com.br/s?k={query_plus}",
+      "allowed_hosts": [
+        "amazon.com.br",
+        "www.amazon.com.br"
+      ],
+      "product_url_patterns": [
+        "/(?:dp|gp/product)/[A-Z0-9]{10}"
+      ],
+      "link_selectors": [
+        "a[href*='/dp/']",
+        "a[href*='/gp/product/']"
+      ],
+      "wait_ms": 2500,
+      "max_candidates": 5
+    },
+    {
+      "name": "Mercado Livre",
+      "enabled": true,
+      "base_url": "https://lista.mercadolivre.com.br",
+      "search_url": "https://lista.mercadolivre.com.br/{query_slug}",
+      "allowed_hosts": [
+        "mercadolivre.com.br",
+        "www.mercadolivre.com.br",
+        "produto.mercadolivre.com.br",
+        "lista.mercadolivre.com.br"
+      ],
+      "product_url_patterns": [
+        "/(?:p|up)/MLB[A-Z0-9]+",
+        "/MLB-?\\d+"
+      ],
+      "link_selectors": [
+        "a[href*='mercadolivre.com.br']"
+      ],
+      "wait_ms": 2500,
+      "max_candidates": 5
+    },
+    {
+      "name": "Magazine Luiza",
+      "enabled": true,
+      "base_url": "https://www.magazineluiza.com.br",
+      "search_url": "https://www.magazineluiza.com.br/busca/{query_slug}/",
+      "allowed_hosts": [
+        "magazineluiza.com.br",
+        "www.magazineluiza.com.br"
+      ],
+      "product_url_patterns": [
+        "/p/[A-Za-z0-9]+/"
+      ],
+      "link_selectors": [
+        "a[href*='/p/']"
+      ],
+      "wait_ms": 2500,
+      "max_candidates": 5
+    },
+    {
+      "name": "WAZ",
+      "enabled": true,
+      "base_url": "https://www.waz.com.br",
+      "search_url": "https://www.waz.com.br/{query}?_q={query}&map=ft",
+      "allowed_hosts": [
+        "waz.com.br",
+        "www.waz.com.br"
+      ],
+      "product_url_patterns": [
+        "-html/p$",
+        "/produto(?:/|$)",
+        "/p(?:/|$)"
+      ],
+      "link_selectors": [
+        "a[href*='/produto/']",
+        "a[href*='/p/']",
+        "main a[href]"
+      ],
+      "wait_ms": 2500,
+      "max_candidates": 4
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "comparador-precos-pc-br",
+  "title": "Comparador de preços de PC Brasil",
+  "description": "Compara e monitora preços de componentes de PC em lojas brasileiras, retornando a melhor oferta com link direto de compra.",
+  "version": "1.2.0",
+  "license": "MIT",
+  "language": "pt-BR",
+  "tags": [
+    "brasil",
+    "hardware",
+    "pc",
+    "ecommerce",
+    "comparacao-de-precos",
+    "monitoramento-de-precos",
+    "python",
+    "playwright",
+    "multi-agente"
+  ],
+  "entry": "SKILL.md",
+  "repository": "https://github.com/caiocf/skill-monitoramento-preco-pc",
+  "homepage": "https://github.com/caiocf/skill-monitoramento-preco-pc#readme"
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Comparador de preços de PC Brasil"
+  short_description: "Compara preços de hardware no Brasil"
+  default_prompt: "Use $comparador-precos-pc-br para encontrar a melhor oferta de um componente de PC em lojas brasileiras."
+
+policy:
+  allow_implicit_invocation: true

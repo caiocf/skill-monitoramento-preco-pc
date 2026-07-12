@@ -1,0 +1,43 @@
+{
+  "name": "comparador-precos-pc-br",
+  "version": "1.2.0",
+  "description": "Skill em português para comparar e monitorar preços de componentes de PC em lojas brasileiras.",
+  "bin": {
+    "comparador-precos-pc-br": "./bin/install-skill.js"
+  },
+  "files": [
+    "agents",
+    "bin",
+    "SKILL.md",
+    "README.md",
+    "install.ps1",
+    "run.ps1",
+    "requirements.txt",
+    "scripts/pc_price_finder.py",
+    "scripts/resolve-python.ps1",
+    "scripts/stores.json",
+    "references/USAGE.md",
+    "tests/test_pc_price_finder.py",
+    "catalog.json",
+    "LICENSE"
+  ],
+  "keywords": [
+    "skill",
+    "codex",
+    "claude",
+    "grok",
+    "devin",
+    "pc",
+    "hardware",
+    "brasil",
+    "ecommerce",
+    "precos"
+  ],
+  "license": "MIT",
+  "author": "Caio C. F.",
+  "homepage": "https://github.com/caiocf/skill-monitoramento-preco-pc#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caiocf/skill-monitoramento-preco-pc.git"
+  }
+}
